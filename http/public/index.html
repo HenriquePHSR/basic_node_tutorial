@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>HOME PAGE</p>
+    <input type="text" id='query'>
+    <button onclick="api_call()">api call</button>
+    <p id="result"></p>
+    <script>
+        async function api_call() {
+            const opt = {
+                method: 'GET'
+            };
+            const query = document.getElementById('query').value
+            const response = await fetch(`http://localhost:2580?field=${query}`, opt);
+            const json = await response.json();
+
+            document.getElementById('result').innerHTML = `${JSON.stringify(json)}`;
+            
+        }
+    </script>
+</body>
+</html>
