@@ -17,7 +17,7 @@ server.use(cors())
 server.use('/', router);
 
 var corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: '*',
     optionsSuccessStatus: 200
 }
 server.use(cors(corsOptions))
@@ -28,9 +28,14 @@ server.listen(port, () => {
 
 router.get('/', (req, res) => {
     // to delete a data from a json we could use .filter and the rewrite the data
-    data = data.users.filter(item => String(item.name) !== "jane doe")
-    console.log(data)
+    // data = data["users"].filter(item => String(item.name) !== "jane doe")
+    // console.log(data)
     // then fs.writeFile(path, data, callback)
+
+    // to create a entry same logic but now we use .push(data) to add data to our json
+    // data.users.push({"name": "jack doe", "age": 32})
+    // then fs.writeFile(path, data, callback)
+
     const query = URL.parse(req.url, true).query.field;
     res.json(data[`${query}`]);
 })
