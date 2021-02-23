@@ -27,6 +27,10 @@ server.listen(port, () => {
 })
 
 router.get('/', (req, res) => {
+    // to delete a data from a json we could use .filter and the rewrite the data
+    data = data.users.filter(item => String(item.name) !== "jane doe")
+    console.log(data)
+    // then fs.writeFile(path, data, callback)
     const query = URL.parse(req.url, true).query.field;
     res.json(data[`${query}`]);
 })
